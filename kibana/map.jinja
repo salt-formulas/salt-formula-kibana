@@ -1,0 +1,7 @@
+
+{% set server = salt['grains.filter_by']({
+    'Debian': {
+        'pkgname': 'kibana',
+        'service': 'kibana',
+    },
+}, merge=salt['pillar.get']('kibana:server')) %}

@@ -1,0 +1,15 @@
+Source: salt-formula-kibana
+Maintainer: Jakub Pavlik <jakub.pavlik@tcpcloud.eu>
+Section: admin
+Priority: optional
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.6
+Homepage: http://www.tcpcloud.eu
+Vcs-Browser: https://github.com/tcpcloud/salt-formula-kibana
+Vcs-Git: https://github.com/tcpcloud/salt-formula-kibana.git
+
+Package: salt-formula-kibana
+Architecture: all
+Depends: ${misc:Depends}, salt-master, reclass
+Description: Kibana Salt formula
+ Install and configure Kibana server and client.

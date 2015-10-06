@@ -1,0 +1,2 @@
+kibana/*             /usr/share/salt-formulas/env/kibana/
+metadata/service/*      /usr/share/salt-formulas/reclass/service/kibana/
