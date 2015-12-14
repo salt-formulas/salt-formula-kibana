@@ -11,7 +11,7 @@ kibana_archive:
   - if_missing: /opt/kibana-4.3.0-linux-x64
 
 kibana_symlink:
-  file: symlink
+  file.symlink:
   - name: /opt/kibana
   - target: /opt/kibana-4.3.0-linux-x64
 
