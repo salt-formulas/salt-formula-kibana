@@ -27,12 +27,20 @@ kibana_own:
   cmd.run:
   - name: chown kibana:kibana /opt/kibana-4.3.0-linux-x64 -R
 
+/etc/default/kibana:
+  file.managed:
+  - source: salt://kibana/files/kibana.default
+  - mode: 755
+  - template: jinja
+  - require:
+    - user: kibana_user
+  - watch_in:
+    - service: kibana_service
+
 /etc/init.d/kibana:
   file.managed:
   - source: salt://kibana/files/kibana.init
-  - user: kibana
-  - group: kibana
-  - mode: 700
+  - mode: 755
   - template: jinja
   - require:
     - user: kibana_user
