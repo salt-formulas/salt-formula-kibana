@@ -35,7 +35,7 @@ kibana_user:
   - watch_in:
     - service: kibana_service
 
-/opt/kibana/src/config/kibana.yml:
+/opt/kibana/config/kibana.yml:
   file.managed:
   - source: salt://kibana/files/kibana.yml
   - template: jinja
