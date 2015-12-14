@@ -1,35 +1,45 @@
 {%- from "kibana/map.jinja" import server with context %}
 {%- if server.enabled %}
 
-{%- if server.addrepo is defined and grains['os_family'] == 'Debian' %}
+kibana_user:
+  user.present:
+  - name: kibana
+  - system: True
+  - home: {{ server.dir }}
+  - require:
+    - file: {{ server.dir }}
 
-kibana_repo:
-  pkgrepo.managed:
-    - humanname: Kibana Repository
-    - name: deb http://packages.elastic.co/kibana/4.1/debian stable main
-    - dist: stable
-    - file: /etc/apt/sources.list.d/kibana.list
-    - key_url: https://packages.elastic.co/GPG-KEY-elasticsearch
+kibana_archive:
+  archive.extracted:
+  - name: {{ server.dir }}
+  - source: https://download.elastic.co/kibana/kibana/kibana-4.3.0-linux-x64.tar.gz
+  - archive_format: tar.gz
+  - if_missing: /opt/kibana/src
+  - require:
+    - user: kibana_user
 
-{%- endif %}
+/etc/init.d/kibana:
+  file.managed:
+  - source: salt://kibana/files/kibana.init
+  - user: kibana
+  - group: kibana
+  - mode: 700
+  - template: jinja
+  - require:
+    - archive: kibana_archive
+  - watch_in:
+    - service: kibana_service
 
-kibana_package:
-  pkg.installed:
-  - name: {{ server.pkgname }}
+/opt/kibana/src/config/kibana.yml:
+  file.managed:
+  - source: salt://kibana/files/kibana.yml
+  - template: jinja
+  - watch_in:
+    - service: kibana_service
 
 kibana_service:
   service.running:
   - enable: true
   - name: {{ server.service }}
-  - watch:
-    - file: /opt/kibana/config/kibana.yml
-
-/opt/kibana/config/kibana.yml:
-  file.managed:
-  - source: salt://kibana/files/kibana.yml
-  - template: jinja
-  - require:
-    - pkg: kibana_package
 
 {%- endif %}
-
