@@ -23,6 +23,10 @@ kibana_user:
   - require:
     - archive: kibana_archive
 
+kibana_own:
+  cmd.run:
+  - name: chown kibana:kibana /opt/kibana-4.3.0-linux-x64 -R
+
 /etc/init.d/kibana:
   file.managed:
   - source: salt://kibana/files/kibana.init
