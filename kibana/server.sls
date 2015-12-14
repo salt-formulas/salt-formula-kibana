@@ -1,22 +1,27 @@
 {%- from "kibana/map.jinja" import server with context %}
 {%- if server.enabled %}
 
+kibana_archive:
+  archive.extracted:
+  - name: /opt/
+  - source: https://download.elastic.co/kibana/kibana/kibana-4.3.0-linux-x64.tar.gz
+  - source_hash: md5=423232a17f451841c1ff63cc5f77b9fc
+  - archive_format: tar
+  - tar_options: v
+  - if_missing: /opt/kibana-4.3.0-linux-x64
+
+kibana_symlink:
+  file: symlink
+  - name: /opt/kibana
+  - target: /opt/kibana-4.3.0-linux-x64
+
 kibana_user:
   user.present:
   - name: kibana
   - system: True
   - home: {{ server.dir }}
   - require:
-    - file: {{ server.dir }}
-
-kibana_archive:
-  archive.extracted:
-  - name: {{ server.dir }}
-  - source: https://download.elastic.co/kibana/kibana/kibana-4.3.0-linux-x64.tar.gz
-  - archive_format: tar.gz
-  - if_missing: /opt/kibana/src
-  - require:
-    - user: kibana_user
+    - archive: kibana_archive
 
 /etc/init.d/kibana:
   file.managed:
@@ -26,7 +31,7 @@ kibana_archive:
   - mode: 700
   - template: jinja
   - require:
-    - archive: kibana_archive
+    - user: kibana_user
   - watch_in:
     - service: kibana_service
 
