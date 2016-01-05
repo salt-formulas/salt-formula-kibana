@@ -24,7 +24,7 @@ kibana_service:
   - watch:
     - file: /opt/kibana/config/kibana.yml
 
-/opt/kibana/config/kibana.yml:
+/usr/share/kibana/config/kibana.yml:
   file.managed:
   - source: salt://kibana/files/kibana.yml
   - template: jinja
