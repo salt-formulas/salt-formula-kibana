@@ -22,7 +22,7 @@ kibana_service:
   - enable: true
   - name: {{ server.service }}
   - watch:
-    - file: /opt/kibana/config/kibana.yml
+    - file: /usr/share/kibana/config/kibana.yml
 
 /usr/share/kibana/config/kibana.yml:
   file.managed:
