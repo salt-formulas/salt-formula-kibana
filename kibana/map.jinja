@@ -3,5 +3,6 @@
     'Debian': {
         'pkgname': 'kibana',
         'service': 'kibana',
+        'configpath': '/opt/kibana/config/kibana.yml',
     },
 }, merge=salt['pillar.get']('kibana:server')) %}

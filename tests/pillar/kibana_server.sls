@@ -1,5 +1,6 @@
 kibana:
   server:
+    configpath: /usr/share/kibana/config/kibana.yml
     enabled: true
     bind:
       address: 0.0.0.0
