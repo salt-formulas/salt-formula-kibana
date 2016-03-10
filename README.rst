@@ -22,12 +22,13 @@ Sample pillar
           host: localhost
           port: 9200
 
-Or without adding elasticsearch kibana repository
+Or without adding elasticsearch kibana repository, but with modified path to config file
 
 .. code-block:: yaml
 
     kibana:
       server:
+        configpath: /usr/share/kibana/config/kibana.yml
         enabled: true
         bind:
           address: 0.0.0.0
