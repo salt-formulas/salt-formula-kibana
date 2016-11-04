@@ -1,0 +1,11 @@
+{%- if pillar.kibana.server is defined %}
+{%- from "kibana/map.jinja" import server with context %}
+
+{%- if server.get('enabled', False) %}
+local_plugin:
+  collectd_processes:
+    process:
+      kibana:
+        match: 'node.*kibana'
+{%- endif %}
+{%- endif %}
