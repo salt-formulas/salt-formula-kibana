@@ -1,0 +1,6 @@
+applications:
+- kibana.client
+parameters:
+  kibana:
+    client:
+      enabled: true
