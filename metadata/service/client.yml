@@ -4,3 +4,82 @@ parameters:
   kibana:
     client:
       enabled: true
+      object:
+        '4.5.1':
+          enabled: true
+          template: kibana/files/objects/config.json
+          type: 'config'
+        logs:
+          enabled: true
+          template: kibana/files/objects/dashboard_logs.json
+          type: dashboard
+        notifications:
+          enabled: true
+          template: kibana/files/objects/dashboard_notifications.json
+          type: dashboard
+        'log-*':
+          template: kibana/files/objects/index-pattern_logs.json
+          type: index-pattern
+        'notification-*':
+          template: kibana/files/objects/index-pattern_notifications.json
+          type: index-pattern
+        search-logs:
+          enabled: true
+          template: kibana/files/objects/search_logs.json
+          type: search
+        search-notifications:
+          enabled: true
+          template: kibana/files/objects/search_notifications.json
+          type: search
+        LOG-MESSAGES-OVER-TIME-PER-SEVERITY:
+          enabled: true
+          template: kibana/files/objects/visualization_LOG-MESSAGES-OVER-TIME-PER-SEVERITY.json
+          type: visualization
+        LOG-MESSAGES-OVER-TIME-PER-SOURCE:
+          enabled: true
+          template: kibana/files/objects/visualization_LOG-MESSAGES-OVER-TIME-PER-SOURCE.json
+          type: visualization
+        NUMBER-OF-LOG-MESSAGES-PER-ROLE:
+          enabled: true
+          template: kibana/files/objects/visualization_NUMBER-OF-LOG-MESSAGES-PER-ROLE.json
+          type: visualization
+        NUMBER-OF-LOG-MESSAGES-PER-SEVERITY:
+          enabled: true
+          template: kibana/files/objects/visualization_NUMBER-OF-LOG-MESSAGES-PER-SEVERITY.json
+          type: visualization
+        TOP-10-HOSTS:
+          enabled: true
+          template: kibana/files/objects/visualization_TOP-10-HOSTS.json
+          type: visualization
+        TOP-10-PROGRAMS:
+          enabled: true
+          template: kibana/files/objects/visualization_TOP-10-PROGRAMS.json
+          type: visualization
+        TOP-10-SOURCES:
+          enabled: true
+          template: kibana/files/objects/visualization_TOP-10-SOURCES.json
+          type: visualization
+        NOTIFICATIONS-OVER-TIME-PER-SOURCE:
+          enabled: true
+          template: kibana/files/objects/visualization_NOTIFICATIONS-OVER-TIME-PER-SOURCE.json
+          type: visualization
+        NOTIFICATIONS-OVER-TIME-PER-SEVERITY:
+          enabled: true
+          template: kibana/files/objects/visualization_NOTIFICATIONS-OVER-TIME-PER-SEVERITY.json
+          type: visualization
+        EVENT-TYPE-BREAKDOWN:
+          enabled: true
+          template: kibana/files/objects/visualization_EVENT-TYPE-BREAKDOWN.json
+          type: visualization
+        SOURCE-BREAKDOWN:
+          enabled: true
+          template: kibana/files/objects/visualization_SOURCE-BREAKDOWN.json
+          type: visualization
+        HOST-BREAKDOWN:
+          enabled: true
+          template: kibana/files/objects/visualization_HOST-BREAKDOWN.json
+          type: visualization
+        NOTIFICATIONS-PER-SEVERITY:
+          enabled: true
+          template: kibana/files/objects/visualization_NOTIFICATIONS-PER-SEVERITY.json
+          type: visualization
