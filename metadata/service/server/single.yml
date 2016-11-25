@@ -1,5 +1,7 @@
 applications:
 - kibana
+classes:
+- service.kibana.support
 parameters:
   kibana:
     server:

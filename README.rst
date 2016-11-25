@@ -39,6 +39,38 @@ Or without adding elasticsearch kibana repository, but with modified path to con
           port: 9200
 
 
+Client setup
+------------
+
+Client with host and port (Kibana use Elasticsearch to store its data):
+
+.. code-block:: yaml
+
+    kibana:
+      client:
+        enabled: true
+        server:
+          host: elasticsearch.host
+          port: 9200
+
+Client where you download a Kibana object that is stored in the directory
+*files/*:
+
+.. code-block:: yaml
+
+    kibana:
+      client:
+        enabled: true
+        server:
+          host: elasticsearch.host
+          port: 9200
+        object:
+          logs:
+            enabled: true
+            name: Logs
+            template: kibana/files/objects/dashboard_logs.json
+            type: 'dashboard'
+
 Read more
 =========
 
