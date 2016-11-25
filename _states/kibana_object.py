@@ -60,17 +60,6 @@ def present(name, kibana_content=None, kibana_type=None):
 
     try:
         headers = {'Content-type': 'application/json'}
-        response = requests.get(url, headers=headers)
-        if response.ok:
-            delta = DictDiffer(response.json(), kibana_content)
-            ret['changes'] = {
-                'old': "{}".format(delta.removed()),
-                'new': "{}".format(delta.added()),
-                'updated': "{}".format(delta.changed())
-            }
-            if not ret['changes']['old'] and not ret['changes']['new'] and not ret['changes']['updated']:
-                ret['comment'] = "Object {} is already present".format(name)
-                return ret
         response = requests.put(url, headers=headers, json=kibana_content)
     except requests.exceptions.RequestException as exc:
         ret['result'] = False
@@ -78,11 +67,8 @@ def present(name, kibana_content=None, kibana_type=None):
                           "Got exception: {1}").format(name, exc)
     else:
         if response.ok:
-            if ret['changes']['old'] or ret['changes']['new'] or ret['changes']['updated']:
-                ret['comment'] = 'Kibana object {0} has been updated'.format(name)
-            else:
-                ret['comment'] = 'Kibana object {0} has been created'.format(name)
-                ret['changes']['new'] = 'Kibana objects created'
+            ret['comment'] = 'Kibana object {0} has been created'.format(name)
+            ret['changes']['new'] = 'Kibana objects created'
         else:
             ret['result'] = False
             ret['comment'] = ("Failed to post Kibana object {0}\n"
