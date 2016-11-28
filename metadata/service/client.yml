@@ -5,7 +5,7 @@ parameters:
     client:
       enabled: true
       object:
-        '4.5.1':
+        '4.6.3':
           enabled: true
           template: kibana/files/objects/config.json
           type: 'config'
@@ -18,9 +18,11 @@ parameters:
           template: kibana/files/objects/dashboard_notifications.json
           type: dashboard
         'log-*':
+          enabled: true
           template: kibana/files/objects/index-pattern_logs.json
           type: index-pattern
         'notification-*':
+          enabled: true
           template: kibana/files/objects/index-pattern_notifications.json
           type: index-pattern
         search-logs:
