@@ -4,6 +4,7 @@
         'pkgname': 'kibana',
         'service': 'kibana',
         'configpath': '/opt/kibana/config/kibana.yml',
+        'default_app_id': 'discover',
     },
 }, merge=salt['pillar.get']('kibana:server')) %}
 
@@ -13,6 +14,5 @@ default:
     host: 127.0.0.1
     port: 9200
     index: '.kibana'
-    default_app_id: discover
 {%- endload %}
 {%- set client = salt['grains.filter_by'](client_defaults, merge=salt['pillar.get']('kibana:client')) %}
