@@ -41,10 +41,6 @@ parameters:
           enabled: true
           template: kibana/files/objects/visualization_LOG-MESSAGES-OVER-TIME-PER-SOURCE.json
           type: visualization
-        NUMBER-OF-LOG-MESSAGES-PER-ROLE:
-          enabled: true
-          template: kibana/files/objects/visualization_NUMBER-OF-LOG-MESSAGES-PER-ROLE.json
-          type: visualization
         NUMBER-OF-LOG-MESSAGES-PER-SEVERITY:
           enabled: true
           template: kibana/files/objects/visualization_NUMBER-OF-LOG-MESSAGES-PER-SEVERITY.json
