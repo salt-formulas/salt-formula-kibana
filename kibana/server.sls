@@ -24,12 +24,21 @@ kibana_service:
   - watch:
     - file: {{ server.configpath }}
 
+{%-  set kibana_config_dir= salt['file.dirname']( server.configpath  )%}
+{{ kibana_config_dir  }}:
+  file.directory:
+    - mode: 755
+    - user: root
+    - group: root
+    - makedirs: true
+
 {{ server.configpath }}:
   file.managed:
   - source: salt://kibana/files/kibana.yml
   - template: jinja
   - require:
     - pkg: kibana_package
+    - file: {{ kibana_config_dir  }}
 
 {%- endif %}
 
