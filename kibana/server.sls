@@ -28,6 +28,7 @@ kibana_service:
   file.managed:
   - source: salt://kibana/files/kibana.yml
   - template: jinja
+  - makedirs: true
   - require:
     - pkg: kibana_package
 
