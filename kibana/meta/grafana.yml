@@ -1,0 +1,4 @@
+dashboard:
+  kibana:
+    format: json
+    template: influxdb/files/grafana_dashboards/kibana_influxdb.json
