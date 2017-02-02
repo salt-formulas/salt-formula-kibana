@@ -25,6 +25,10 @@ parameters:
           enabled: true
           template: kibana/files/objects/index-pattern_notifications.json
           type: index-pattern
+        'audit-*':
+          enabled: true
+          template: kibana/files/objects/index-pattern_audit.json
+          type: index-pattern
         search-logs:
           enabled: true
           template: kibana/files/objects/search_logs.json
@@ -32,6 +36,10 @@ parameters:
         search-notifications:
           enabled: true
           template: kibana/files/objects/search_notifications.json
+          type: search
+        search-audit:
+          enabled: true
+          template: kibana/files/objects/search_audit.json
           type: search
         LOG-MESSAGES-OVER-TIME-PER-SEVERITY:
           enabled: true
