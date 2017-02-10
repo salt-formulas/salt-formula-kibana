@@ -5,7 +5,7 @@ parameters:
     client:
       enabled: true
       object:
-        '4.6.3':
+        'all':
           enabled: true
           template: kibana/files/objects/config.json
           type: 'config'
