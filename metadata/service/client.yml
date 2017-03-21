@@ -1,5 +1,5 @@
 applications:
-- kibana.client
+- kibana
 parameters:
   kibana:
     client:
