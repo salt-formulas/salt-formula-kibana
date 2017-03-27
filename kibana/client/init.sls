@@ -13,7 +13,7 @@ kibana_object_{{ object_name }}:
   {%- else %}
   kibana_object.absent:
   {%- endif %}
-  - name: {{ object_name }}
+  - name: {{ object.id|default(object_name) }}
   - kibana_type: {{ object.type }}
 {%- endfor %}
 
