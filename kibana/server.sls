@@ -2,12 +2,9 @@
 {%- from "linux/map.jinja" import system with context %}
 {%- if server.enabled %}
 
-linux_packages:
+kibana_package:
   pkg.installed:
-    - pkgs: {{ system.pkgs }}
-
-include:
-  - linux.system.repo
+    - name: {{ server.pkgname }}
 
 {%- if not grains.get('noservices', False) %}
 
@@ -25,6 +22,8 @@ kibana_service:
   - source: salt://kibana/files/kibana.yml
   - template: jinja
   - makedirs: true
+  - require:
+    - pkg: kibana_package
 
 {%- endif %}
 
