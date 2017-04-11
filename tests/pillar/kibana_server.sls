@@ -9,4 +9,3 @@ kibana:
       engine: elasticsearch
       host: localhost
       port: 9200
-
