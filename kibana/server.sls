@@ -1,5 +1,4 @@
 {%- from "kibana/map.jinja" import server with context %}
-{%- from "linux/map.jinja" import system with context %}
 {%- if server.enabled %}
 
 kibana_package:
