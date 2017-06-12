@@ -50,9 +50,7 @@ def present(name, kibana_content=None, kibana_type=None):
         ret['comment'] = 'Content is not set'
         return ret
 
-    profile = __salt__['config.option']('kibana')
-
-    url, index = _set_parameters(name, kibana_type, profile)
+    url, index = _get_parameters(name, kibana_type)
     if not url:
         ret['result'] = False
         ret['comment'] = index
@@ -89,9 +87,7 @@ def absent(name, kibana_type=None):
     '''
     ret = {'name': name, 'result': True, 'comment': '', 'changes': {}}
 
-    profile = __salt__['config.option']('kibana')
-
-    url, index = _set_parameters(name, kibana_type, profile)
+    url, index = _get_parameters(name, kibana_type)
     if not url:
         ret['result'] = False
         ret['comment'] = index
@@ -116,13 +112,15 @@ def absent(name, kibana_type=None):
     return ret
 
 
-def _set_parameters(name, kibana_type, profile):
+def _get_parameters(name, kibana_type):
     '''
     Retrieve parameters from profile.
     '''
 
     if not kibana_type:
         return False, 'Type is not set'
+
+    profile = __salt__['config.option']('kibana')
 
     url = profile.get('kibana_url')
     if not url:
