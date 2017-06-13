@@ -5,16 +5,15 @@ kibana_package:
   pkg.installed:
     - name: {{ server.pkgname }}
 
-{%- if not grains.get('noservices', False) %}
-
 kibana_service:
   service.running:
   - enable: true
   - name: {{ server.service }}
+  {%- if grains.get('noservices') %}
+  - onlyif: /bin/false
+  {%- endif %}
   - watch:
     - file: {{ server.configpath }}
-
-{%- endif %}
 
 {{ server.configpath }}:
   file.managed:
