@@ -1,4 +1,9 @@
 dashboard:
-  kibana:
+  kibana_influxdb:
+    datasource: influxdb
     format: json
     template: kibana/files/grafana_dashboards/kibana_influxdb.json
+  kibana_prometheus:
+    datasource: prometheus
+    format: json
+    template: kibana/files/grafana_dashboards/kibana_prometheus.json
