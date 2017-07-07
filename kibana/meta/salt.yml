@@ -1,8 +1,8 @@
+{%- if pillar.get('kibana', {}).client is defined %}
 minion:
-  {%- if pillar.kibana.client is defined %}
   kibana:
     {%- from "kibana/map.jinja" import client with context %}
     kibana:
       kibana_url: {{ client.server.host }}:{{ client.server.port }}
       kibana_index: {{ client.server.index }}
-  {%- endif %}
+{%- endif %}
