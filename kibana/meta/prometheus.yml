@@ -2,7 +2,7 @@
 {%- if server.get('enabled', False) %}
 server:
   alert:
-    ProcstatRunningKibana:
+    KibanaProcessDown:
       if: >-
         procstat_running{process_name="kibana"} == 0
       {% raw %}
