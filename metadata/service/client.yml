@@ -2,16 +2,12 @@ applications:
 - kibana
 parameters:
   _param:
-    kibana_version: 4.6.4
+    kibana_client_default_index: "log-*"
   kibana:
     client:
       enabled: true
+      default_index: ${_param:kibana_client_default_index}
       object:
-        config:
-          id: ${_param:kibana_version}
-          enabled: true
-          template: kibana/files/objects/config.json
-          type: 'config'
         logs:
           enabled: true
           template: kibana/files/objects/dashboard_logs.json
