@@ -8,6 +8,13 @@
     },
 }, merge=salt['pillar.get']('kibana:server')) %}
 
+{% set monitoring = salt['grains.filter_by']({
+    'default': {
+        'service_failed_warning_threshold_percent': 0.3,
+        'service_failed_critical_threshold_percent': 0.6,
+    },
+}, grain='os_family', merge=salt['pillar.get']('kibana:monitoring')) %}
+
 {%- load_yaml as client_defaults %}
 default:
   server:
