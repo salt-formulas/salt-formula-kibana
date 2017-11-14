@@ -1,9 +1,9 @@
 {%- from "kibana/map.jinja" import server with context %}
 {%- if server.enabled %}
 
-kibana_package:
+kibana_packages:
   pkg.installed:
-    - name: {{ server.pkgname }}
+    - names: {{ server.pkgs }}
 
 kibana_service:
   service.running:
@@ -13,15 +13,21 @@ kibana_service:
   - onlyif: /bin/false
   {%- endif %}
   - watch:
-    - file: {{ server.configpath }}
+    - file: kibana_config
 
-{{ server.configpath }}:
+kibana_config:
   file.managed:
+  {%- if server.version == 5 %}
+  - name: /etc/kibana/kibana.yml
+  {%- endif %}
+  {%- if server.version == 4 %}
+  - name: /opt/kibana/config/kibana.yml
+  {%- endif %}
   - source: salt://kibana/files/kibana.yml
   - template: jinja
   - makedirs: true
   - require:
-    - pkg: kibana_package
+    - pkg: kibana_packages
 
 {%- endif %}
 

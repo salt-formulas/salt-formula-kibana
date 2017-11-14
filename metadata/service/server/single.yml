@@ -3,10 +3,12 @@ applications:
 classes:
 - service.kibana.support
 parameters:
+  _param:
+    kibana_version: 4
   kibana:
     server:
       enabled: true
-      version: latest
+      version: ${_param:kibana_version}
       source:
         engine: file
       bind:
