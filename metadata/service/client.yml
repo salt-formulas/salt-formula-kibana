@@ -3,7 +3,7 @@ applications:
 parameters:
   _param:
     kibana_client_default_index: "log-*"
-    kibana_version: 4
+    kibana_version: 5
   kibana:
     client:
       enabled: true
