@@ -4,7 +4,7 @@ classes:
 - service.kibana.support
 parameters:
   _param:
-    kibana_version: 4
+    kibana_version: 5
   kibana:
     server:
       enabled: true
