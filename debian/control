@@ -10,6 +10,6 @@ Vcs-Git: https://github.com/tcpcloud/salt-formula-kibana.git
 
 Package: salt-formula-kibana
 Architecture: all
-Depends: ${misc:Depends}, salt-master, reclass
+Depends: ${misc:Depends}
 Description: Kibana Salt formula
  Install and configure Kibana server and client.
