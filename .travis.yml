@@ -17,8 +17,9 @@ install:
   - bundle install
 
 env:
-  - PLATFORM=trevorj/salty-whales:trusty SUITE=kibana-server
-  - PLATFORM=trevorj/salty-whales:xenial SUITE=kibana-server
+  - PLATFORM=epcim/salt-formulas:saltstack-ubuntu-xenial-salt-2016.3 SUITE=kibana-server
+  - PLATFORM=epcim/salt-formulas:saltstack-ubuntu-xenial-salt-2017.7 SUITE=kibana-server
+  # - PLATFORM=epcim/salt-formulas:saltstack-ubuntu-bionic-salt-2017.7 SUITE=kibana-server
 
 before_script:
   - set -o pipefail
