@@ -1,4 +1,4 @@
 name: "kibana"
 version: "0.2"
-source: "https://github.com/tcpcloud/salt-formula-kibana"
+source: "https://github.com/salt-formulas/salt-formula-kibana"
 
