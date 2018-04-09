@@ -13,9 +13,14 @@ kibana_object_config:
 {%- for object_name, object in client.get('object', {}).iteritems() %}
 kibana_object_{{ object_name }}:
   {%- if object.get('enabled', False) %}
+  {%- if object.content is defined %}
+  kibana_object.present:
+  - kibana_content: {{ object.content|json }}
+  {%- else %}
   {% import_json object.template as content %}
   kibana_object.present:
   - kibana_content: {{ content|json }}
+  {%- endif %}
   {%- else %}
   kibana_object.absent:
   {%- endif %}

@@ -71,6 +71,27 @@ Client where you download a Kibana object that is stored in the directory
             template: kibana/files/objects/dashboard_logs.json
             type: 'dashboard'
 
+Client directly use a Kibana object that is stored in model:
+
+ .. code-block:: yaml
+
+     kibana:
+       client:
+         enabled: true
+         server:
+           host: elasticsearch.host
+           port: 9200
+         object:
+           logs:
+             enabled: true
+             name: Logs
+             type: 'dashboard'
+             content:
+               title: "Logs"
+               hits: 0
+               description: ""
+               ...
+
 Read more
 =========
 
