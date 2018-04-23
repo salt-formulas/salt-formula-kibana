@@ -2,48 +2,48 @@
 {%- if server.get('enabled', False) %}
 server:
   alert:
-    KibanaProcessInfo:
+    KibanaProcessDown:
       if: >-
         procstat_running{process_name="kibana"} == 0
       {% raw %}
       labels:
-        severity: info
+        severity: minor
         service: kibana
       annotations:
-        summary: 'Kibana service is down'
-        description: 'Kibana service is down on node {{ $labels.host }}'
+        summary: 'Kibana process is down'
+        description: 'Kibana process is down on node {{ $labels.host }}'
       {% endraw %}
-    KibanaProcessWarning:
+    KibanaProcessesDownMinor:
       if: >-
-        count(procstat_running{process_name="kibana"} == 0) >= count(procstat_running{process_name="kibana"}) * {{ monitoring.service_failed_warning_threshold_percent }}
+        count(procstat_running{process_name="kibana"} == 0) >= count(procstat_running{process_name="kibana"}) * {{ monitoring.service_failed_warning_threshold_percent }} and count(procstat_running{process_name="kibana"} == 0) < count(procstat_running{process_name="kibana"}) * {{ monitoring.service_failed_critical_threshold_percent }}
       {% raw %}
       labels:
-        severity: warning
+        severity: minor
         service: kibana
       annotations:
-        summary: 'More than {%- endraw %} {{monitoring.service_failed_warning_threshold_percent*100}}%{%- raw %} of Kibana services are down'
-        description: 'More than {%- endraw %} {{monitoring.service_failed_warning_threshold_percent*100}}%{%- raw %} of Kibana services are down'
+        summary: 'Medium percentage of Kibana processes are down'
+        description: 'More than {%- endraw %} {{monitoring.service_failed_warning_threshold_percent*100}}%{%- raw %} and less than {%- endraw %} {{monitoring.service_failed_critical_threshold_percent*100}}%{%- raw %} of Kibana processes are down'
       {% endraw %}
-    KibanaProcessCritical:
+    KibanaProcessesDownMajor:
       if: >-
         count(procstat_running{process_name="kibana"} == 0) >= count(procstat_running{process_name="kibana"}) * {{ monitoring.service_failed_critical_threshold_percent }}
+      {% raw %}
+      labels:
+        severity: major
+        service: kibana
+      annotations:
+        summary: 'High percentage of Kibana processes are down'
+        description: 'More than {%- endraw %} {{monitoring.service_failed_critical_threshold_percent*100}}%{%- raw %} of Kibana processes are down'
+      {% endraw %}
+    KibanaServiceOutage:
+      if: >-
+        count(procstat_running{process_name="kibana"} == 0) == count(procstat_running{process_name="kibana"})
       {% raw %}
       labels:
         severity: critical
         service: kibana
       annotations:
-        summary: 'More than {%- endraw %} {{monitoring.service_failed_critical_threshold_percent*100}}%{%- raw %} of Kibana services are down'
-        description: 'More than {%- endraw %} {{monitoring.service_failed_critical_threshold_percent*100}}%{%- raw %} of Kibana services are down'
-      {% endraw %}
-    KibanaProcessDown:
-      if: >-
-        count(procstat_running{process_name="kibana"} == 0) == count(procstat_running{process_name="kibana"})
-      {% raw %}
-      labels:
-        severity: down
-        service: kibana
-      annotations:
-        summary: 'All Kibana services are down'
-        description: 'All Kibana services are down'
+        summary: 'Kibana service outage'
+        description: 'All Kibana processes are down. Kibana service is not available'
       {% endraw %}
 {%- endif %}
