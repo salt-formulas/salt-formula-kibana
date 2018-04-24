@@ -11,7 +11,7 @@ server:
         service: kibana
       annotations:
         summary: 'Kibana process is down'
-        description: 'Kibana process is down on node {{ $labels.host }}'
+        description: 'The Kibana process is down on node {{ $labels.host }}.'
       {% endraw %}
     KibanaProcessesDownMinor:
       if: >-
@@ -22,7 +22,7 @@ server:
         service: kibana
       annotations:
         summary: 'Medium percentage of Kibana processes are down'
-        description: 'More than {%- endraw %} {{monitoring.service_failed_warning_threshold_percent*100}}%{%- raw %} and less than {%- endraw %} {{monitoring.service_failed_critical_threshold_percent*100}}%{%- raw %} of Kibana processes are down'
+        description: 'More than {%- endraw %} {{monitoring.service_failed_warning_threshold_percent*100}}%{%- raw %} and less than {%- endraw %} {{monitoring.service_failed_critical_threshold_percent*100}}%{%- raw %} of Kibana processes are down.'
       {% endraw %}
     KibanaProcessesDownMajor:
       if: >-
@@ -33,7 +33,7 @@ server:
         service: kibana
       annotations:
         summary: 'High percentage of Kibana processes are down'
-        description: 'More than {%- endraw %} {{monitoring.service_failed_critical_threshold_percent*100}}%{%- raw %} of Kibana processes are down'
+        description: 'More than {%- endraw %} {{monitoring.service_failed_critical_threshold_percent*100}}%{%- raw %} of Kibana processes are down.'
       {% endraw %}
     KibanaServiceOutage:
       if: >-
@@ -44,6 +44,6 @@ server:
         service: kibana
       annotations:
         summary: 'Kibana service outage'
-        description: 'All Kibana processes are down. Kibana service is not available'
+        description: 'All Kibana processes are down. The Kibana service is not available.'
       {% endraw %}
 {%- endif %}
