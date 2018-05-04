@@ -15,7 +15,7 @@ server:
       {% endraw %}
     KibanaProcessesDownMinor:
       if: >-
-        count(procstat_running{process_name="kibana"} == 0) >= count(procstat_running{process_name="kibana"}) * {{ monitoring.service_failed_warning_threshold_percent }} and count(procstat_running{process_name="kibana"} == 0) < count(procstat_running{process_name="kibana"}) * {{ monitoring.service_failed_critical_threshold_percent }}
+        count(procstat_running{process_name="kibana"} == 0) >= count(procstat_running{process_name="kibana"}) * {{ monitoring.service_failed_warning_threshold_percent }}
       {% raw %}
       labels:
         severity: minor
@@ -26,7 +26,7 @@ server:
       {% endraw %}
     KibanaProcessesDownMajor:
       if: >-
-        count(procstat_running{process_name="kibana"} == 0) >= count(procstat_running{process_name="kibana"}) * {{ monitoring.service_failed_critical_threshold_percent }} and count(procstat_running{process_name="kibana"} == 0) < count(procstat_running{process_name="kibana"})
+        count(procstat_running{process_name="kibana"} == 0) >= count(procstat_running{process_name="kibana"}) * {{ monitoring.service_failed_critical_threshold_percent }}
       {% raw %}
       labels:
         severity: major
