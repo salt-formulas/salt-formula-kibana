@@ -22,7 +22,7 @@ server:
         service: kibana
       annotations:
         summary: "{%- endraw %}{{monitoring.service_failed_warning_threshold_percent*100}}%{%- raw %} of Kibana processes are down"
-        description: "{{ $value }} Kibana processes are down (at least {%- endraw %}{{monitoring.service_failed_warning_threshold_percent*100}}%{%- raw %})."
+        description: "{{ $value }} Kibana processes (>= {%- endraw %}{{monitoring.service_failed_warning_threshold_percent*100}}%{%- raw %}) are down."
       {% endraw %}
     KibanaProcessesDownMajor:
       if: >-
@@ -33,7 +33,7 @@ server:
         service: kibana
       annotations:
         summary: "{%- endraw %}{{monitoring.service_failed_critical_threshold_percent*100}}%{%- raw %} of Kibana processes are down"
-        description: "{{ $value }} Kibana processes are down (at least {%- endraw %}{{monitoring.service_failed_critical_threshold_percent*100}}%{%- raw %})."
+        description: "{{ $value }} Kibana processes (>= {%- endraw %}{{monitoring.service_failed_critical_threshold_percent*100}}%{%- raw %}) are down."
       {% endraw %}
     KibanaServiceOutage:
       if: >-
