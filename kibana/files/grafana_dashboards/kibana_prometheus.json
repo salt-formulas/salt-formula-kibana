@@ -5,7 +5,7 @@
       {
         "$$hashKey": "object:419",
         "builtIn": 1,
-        "datasource": "-- Grafana --",
+        "datasource": "prometheus",
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
@@ -17,7 +17,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 365,
+  "id": null,
   "iteration": 1529411910932,
   "links": [],
   "panels": [
@@ -1330,7 +1330,7 @@
             "$__all"
           ]
         },
-        "datasource": "prometheus",
+        "datasource": null,
         "hide": 0,
         "includeAll": true,
         "label": null,
