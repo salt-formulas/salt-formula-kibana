@@ -5,6 +5,6 @@
   "description": "",
   "version": 1,
   "kibanaSavedObjectMeta": {
-    "searchSourceJSON": "{\n  \"index\": \"log-*\",\n  \"query\": {\n    \"query_string\": {\n      \"analyze_wildcard\": true,\n      \"query\": \"*\"\n    }\n  },\n  \"filter\": []\n}"
+    "searchSourceJSON": "{\n  \"index\": \"index-template-log\",\n  \"query\": {\n    \"query_string\": {\n      \"analyze_wildcard\": true,\n      \"query\": \"*\"\n    }\n  },\n  \"filter\": []\n}"
   }
 }

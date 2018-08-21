@@ -2,7 +2,7 @@ applications:
 - kibana
 parameters:
   _param:
-    kibana_client_default_index: "log-*"
+    kibana_client_default_index: index-template-log
     kibana_version: 5
   kibana:
     client:
@@ -17,15 +17,15 @@ parameters:
           enabled: true
           template: kibana/files/objects/dashboard_notifications.json
           type: dashboard
-        'log-*':
+        index-template-log:
           enabled: true
           template: kibana/files/objects/index-pattern_logs.json
           type: index-pattern
-        'notification-*':
+        index-template-notification:
           enabled: true
           template: kibana/files/objects/index-pattern_notifications.json
           type: index-pattern
-        'audit-*':
+        index-template-audit:
           enabled: true
           template: kibana/files/objects/index-pattern_audit.json
           type: index-pattern

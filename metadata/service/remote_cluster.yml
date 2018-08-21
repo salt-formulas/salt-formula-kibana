@@ -1,0 +1,16 @@
+parameters:
+  kibana:
+    client:
+      object:
+        index-template-log:
+          content:
+            title: "*:log-*"
+            notExpandable: true
+        index-template-notification:
+          content:
+            title: "*:notification-*"
+            notExpandable: true
+        index-template-audit:
+          content:
+            title: "*:audit-*"
+            notExpandable: true
